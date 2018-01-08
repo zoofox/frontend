@@ -4,23 +4,41 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+var http = require('http');
+var https = require('https');
+var fs = require('fs');
 var index = require('./routes/index');
 var users = require('./routes/users');
-
+var error = require('./utils/error');
 var app = express();
+
+//获取环境变量并启动
+var environment = process.argv.splice(2)[0] || 'dev';
+var envConfig = require('./config/environment')[environment];
+var port = envConfig.port;
+app.set('port', port);
+
+http.createServer(app).listen(port).on('error', error.systemStartError);
+
+var options = {
+    key: fs.readFileSync('./cert/privatekey.pem'),
+    cert: fs.readFileSync('./cert/certificate.pem')
+};
+
+https.createServer(options, app).listen(envConfig.httpsPort).on('error', error.systemStartError);
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public/images/', 'logo.jpg')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/static',express.static(envConfig.staticPrefix));
 
 app.use('/', index);
 app.use('/users', users);
@@ -36,8 +54,7 @@ app.use(function(req, res, next) {
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
+  res.locals.error = environment === 'dev' ? err : {};
   // render the error page
   res.status(err.status || 500);
   res.render('error');
