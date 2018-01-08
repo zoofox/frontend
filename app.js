@@ -15,6 +15,9 @@ var app = express();
 var environment = process.argv.splice(2)[0] || 'dev';
 var envConfig = require('./config/environment')[environment];
 var port = envConfig.port;
+
+
+console.log(envConfig)
 app.set('port', port);
 
 http.createServer(app).listen(port).on('error', error.systemStartError);
