@@ -1,0 +1,24 @@
+#parse( "pc/common/system_config.vm" )
+#parse( "pc/common/global_util.vm" )
+#parse( "pc/common/guide_common.vm" )
+#set($headerParams={
+'title':"关于我们",
+'cssList':['idangerous.css','guide/style.css','guide/contract.css'],
+'jsList':['lib/mustache/mustache.js','lib/ckplayer/ckplayer.js','lib/swiper/idangerous.swiper.min.js','business/guide/joinus.js']}
+)
+#guide_frame($headerParams)
+<div class="container-box">
+	<img src="$imagePrefix/guide/contract-bg-2.jpg" width="1200px"  class="plus_img"/>
+	<span class="contract_1">pr@chushou.tv</span>
+	<span class="contract_2">ad@chushou.tv</span>
+	<span class="contract_3">legal@kascend.com</span>
+	<span class="contract_4">bd@chushou.tv</span>
+	<span class="contract_5">hr@chushou.tv</span>
+	<span class="contract_6">service@chushou.tv</span>
+	<span class="contract_7">QQ:2381696632</span>
+</div>
+#end
+
+
+
+

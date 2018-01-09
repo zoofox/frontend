@@ -1,0 +1,63 @@
+#parse( "pc/common/pc_common.vm" )
+## 新导航栏
+#macro(guide_nav)
+<div class="guide_header">
+	<div class="guide_tab">
+		<div class="guide_tab_con">
+			<a href="#util_homePageUrl()"><img src="$imagePrefix/images/common/logo2_modify2.png" alt="触手-手游直播平台" title="触手-手游直播平台"></a>
+			<ul>
+				<li class="copyright_tab"><a href="$ctx/guide/copyright.htm">著作权声明</a></li>
+				<li class="join_tab"><a href="$ctx/guide/join.htm">加入我们</a></li>
+				<li class="contact_tab"><a href="$ctx/guide/contact.htm">联系我们</a></li>
+				<li class="about_tab"><a href="$ctx/guide/about.htm">关于我们</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="guide_banner">
+		<div class="banner-top-box">
+			<div class="banner-box swiper_event_container">
+				<div class="images_container swiper-wrapper" id="activity_poster_container">
+					<img class="swiper-slide videoimg" src="$imagePrefix/joinus/banner_01.jpg"/>
+					<img class="swiper-slide" src="$imagePrefix/guide/banner_5.jpg"/>
+					<img class="swiper-slide" src="$imagePrefix/guide/banner_1.jpg"/>
+					<img class="swiper-slide" src="$imagePrefix/guide/banner_2.jpg?v=1"/>
+					<img class="swiper-slide" src="$imagePrefix/guide/banner_3.jpg"/>
+					<img class="swiper-slide" src="$imagePrefix/guide/banner_4.jpg"/>
+				</div>
+				<div class="option-box">
+					<img class="arrow_btn left_arrow_btn" id="left_arrow_btn" src="$imagePrefix/joinus/left-arrow2.png" />
+					<img class="arrow_btn right_arrow_btn" id="right_arrow_btn" src="$imagePrefix/joinus/right-arrow2.png" />
+					<div class="pagination swiper_match_pagination"></div>
+					<div class="play" data-video="$SwitchProtocol//vcdn.kascend.com/jellyfish/event/nxns/nxnszh_1.mp4">
+						<div class="play_icon"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<img style="display:none;" src="$imagePrefix/joinus/paly-hover1.png" />
+		<div class="shade_ucanuup"></div>
+		<div class="share_video_box zbvideoshow" style="display:none">
+			<div id="a1"></div>
+		</div>
+	</div>
+</div>
+#end
+## 底部导航
+#macro(guide_footer)
+	<div class="guide_footer">
+		 <p>浙公网安备 33010602001825号|浙ICP备12016570号-6  杭州开迅科技有限公司 2015©版权所有<br>网络文化经营许可证  浙网文[2015]0480-199号|信息网络传播视听节目许可证 1105098
+		 </p>
+	</div>
+#end
+## new pc
+#macro ( guide_frame $params)
+	#pc_header($params)
+	<body>
+		#guide_nav()
+		$!bodyContent
+		## 弹窗模块
+		#guide_footer()
+		#pc_js(${params.jsList})
+	</body>
+</html>
+#end
