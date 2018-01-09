@@ -1,0 +1,18 @@
+{{extend ("./common/test.xtpl")}}
+
+{{#block ("head")}}
+head
+    <link type="text/css" href="test.css" rev="stylesheet" rel="stylesheet"/>
+{{/block}}
+
+{{#block ("body")}}
+body
+    <h2>{{title}}</h2>
+{{/block}}
+
+{{#macro("test","param", default=1)}}
+    param is {{param}} {{default}}
+{{/macro}}
+
+{{macro("test","2")}}
+{{macro("test", "2", default=2)}}

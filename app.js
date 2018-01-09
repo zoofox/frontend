@@ -7,13 +7,9 @@ var bodyParser = require('body-parser');
 var http = require('http');
 var https = require('https');
 var fs = require('fs');
-var velocity = require('velocityjs')//velocityjs
 var index = require('./routes/index');
 var error = require('./utils/error');
 var app = express();
-
-var vm = require('express-velocity');
-
 
 //获取环境变量并启动
 var environment = process.argv.splice(2)[0] || 'dev';
@@ -38,11 +34,7 @@ https.createServer(options, app).listen(envConfig.httpsPort).on('error', error.s
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 // app.set('view engine', 'ejs');
-app.set('view engine', 'vm');
-
-app.engine(".vm", vm({
-  root: __dirname + "/views"  //duplicated with views setting but required for velocity template
-}))
+app.set('view engine', 'xtpl');
 
 // uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, 'public/images/', 'favicon.ico')));
