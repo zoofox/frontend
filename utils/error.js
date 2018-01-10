@@ -1,11 +1,10 @@
+var utils = require('./utils');
 var error = {
 	//系统启动报错
 	systemStartError:function(error){
 		if (error.syscall !== 'listen') {
 		    throw error;
 		  }
-
-		  // handle specific listen errors with friendly messages
 		  switch (error.code) {
 		    case 'EACCES':
 		      console.error('port requires elevated privileges');
@@ -18,6 +17,22 @@ var error = {
 		    default:
 		      throw error;
 		  }
+	},
+	//捕获所有错误
+	runningErrorHandler:function(err,req,res,next,environment){
+		  res.locals.message = err.message;
+		  res.locals.error = environment === 'dev' ? err : {};
+		  res.status(err.status || 500);
+		  var ua = req.get('User-Agent');
+		  var isMobile = utils.isMobile(ua);
+		  switch(err.status){
+		    case 404:
+		      var errorPage = isMobile?'':'pc/common/not_found';
+		      break;
+		    default:
+		      var errorPage = isMobile?'':'pc/common/error';
+		  }
+		  res.render(errorPage);
 	}
 };
 module.exports = error;

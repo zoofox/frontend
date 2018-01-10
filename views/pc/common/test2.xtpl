@@ -1,0 +1,3 @@
+{{#macro("test3","param", default=1)}}
+    param is {{param}} {{default}}
+{{/macro}}

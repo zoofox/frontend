@@ -1,4 +1,4 @@
-modules.export = {
+module.exports = {
 	isMobile:function(userAgent){
 		if(userAgent){
 			var phoneReg = /iPhone|iPod|iPad|Android|Windows Phone|MQQBrowser/;
