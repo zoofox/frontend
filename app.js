@@ -38,6 +38,7 @@ app.use(favicon(path.join(__dirname, 'favicon.ico')));
 
 //access日志
 utils.logsGenerate('access',app);
+utils.startLogsTask();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
