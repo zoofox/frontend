@@ -36,9 +36,8 @@ app.set('view engine', 'xtpl');
 
 app.use(favicon(path.join(__dirname, 'favicon.ico')));
 
-//access日志
-utils.logsGenerate('access',app);
-utils.startLogsTask();
+//日志
+utils.startLogsTask(app);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

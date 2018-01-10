@@ -27,10 +27,10 @@ var error = {
 		  var isMobile = utils.isMobile(ua);
 		  switch(err.status){
 		    case 404:
-		      var errorPage = isMobile?'':'pc/common/not_found';
+		      var errorPage = isMobile?'mobile/common/not_found':'pc/common/not_found';
 		      break;
 		    default:
-		      var errorPage = isMobile?'':'pc/common/error';
+		      var errorPage = isMobile?'mobile/common/error':'pc/common/error';
 		  }
 		  res.render(errorPage);
 	}

@@ -1,5 +1,5 @@
 module.exports = {
-	logDirctory:'e:/frlogs',
+	logDirctory:'../frlogs/',
 	access:{
 		date_format:'YYYYMMDD',	
 		filename:'access-%DATE%.log',
