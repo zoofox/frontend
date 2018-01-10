@@ -1,7 +1,6 @@
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
-var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var http = require('http');
@@ -16,7 +15,6 @@ var app = express();
 
 //获取环境变量并启动
 var environment = process.argv.splice(2)[0] || 'dev';
-console.log(environment)
 var currentEnvConfig = environmentConfig[environment];
 var port = currentEnvConfig.port;
 
@@ -37,7 +35,10 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'xtpl');
 
 app.use(favicon(path.join(__dirname, 'favicon.ico')));
-app.use(logger('dev'));
+
+//access日志
+utils.logsGenerate('access',app);
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
