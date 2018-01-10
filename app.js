@@ -16,13 +16,13 @@ var app = express();
 
 //获取环境变量并启动
 var environment = process.argv.splice(2)[0] || 'dev';
+console.log(environment)
 var currentEnvConfig = environmentConfig[environment];
 var port = currentEnvConfig.port;
 
 console.log('system running environment:')
 console.log(currentEnvConfig)
-app.set('environment', environment);
-app.set('port', port);
+
 http.createServer(app).listen(port).on('error', error.systemStartError);
 
 var options = {
@@ -34,16 +34,13 @@ https.createServer(options, app).listen(currentEnvConfig.httpsPort).on('error', 
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'ejs');
 app.set('view engine', 'xtpl');
 
-// uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use('/static',express.static(currentEnvConfig.staticPrefix));
 
 app.use(function(req, res, next) {
   res.locals = {
@@ -52,7 +49,6 @@ app.use(function(req, res, next) {
   }
   next();
 });
-
 
 app.use('/', index);
 app.use('/event', eventRouter);

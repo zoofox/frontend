@@ -3,6 +3,7 @@
     <head>
         <meta name="charset" content="utf-8" />
         <title>{{title}}</title>
+         <link type="text/css" href="/css/test2.css" rev="stylesheet" rel="stylesheet"/>
         {{{block ("head")}}}
     </head>
     <body>

@@ -1,9 +1,10 @@
 {{include ("./pc/common/test2.xtpl")}}
 {{extend ("./pc/common/test.xtpl")}}
-
+<link rel='stylesheet' href='/css/style.css' />
 {{#block ("head")}}
 head
-    <link type="text/css" href="test.css" rev="stylesheet" rel="stylesheet"/>
+    <link type="text/css" href="{{staticPrefix}}/css/test.css" rev="stylesheet" rel="stylesheet"/>
+    
 {{/block}}
 
 {{#block ("body")}}
@@ -18,3 +19,8 @@ body
 {{macro("test","2")}}
 {{macro("test", "2", default=2)}}
 {{macro("test3", "2", default=11)}}
+
+<br>
+imagePrefix:{{imagePrefix}}
+<br>
+staticPrefix:{{staticPrefix}}
