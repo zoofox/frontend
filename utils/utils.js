@@ -31,7 +31,7 @@ module.exports = {
 		  size:accessLogsConfig.size
 		})
 		if(accessLogsConfig.formatSelfDefined){
-		  morgan.format(accessLogsConfig.formatName, accessLogsConfig.formatContent);
+		  logger.format(accessLogsConfig.formatName, accessLogsConfig.formatContent);
 		}
 		app.use(logger(accessLogsConfig.formatName, {stream: accessLogStream,skip: accessLogsConfig.skipFunction}));
 		callback(null,1);

@@ -16,12 +16,11 @@ var app = express();
 //获取环境变量并启动
 var environment = process.argv.splice(2)[0] || 'dev';
 var currentEnvConfig = environmentConfig[environment];
-var port = currentEnvConfig.port;
 
 console.log('system running environment:')
 console.log(currentEnvConfig)
 
-http.createServer(app).listen(port).on('error', error.systemStartError);
+http.createServer(app).listen(currentEnvConfig.port).on('error', error.systemStartError);
 
 var options = {
     key: fs.readFileSync('./cert/privatekey.pem'),
